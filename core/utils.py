@@ -1,4 +1,5 @@
 import yaml
+import re
 from pathlib import Path
 from typing import Any, Dict
 from config import get_config
@@ -10,14 +11,15 @@ def load_node_prompt(category: str, node_name: str) -> Dict[str, Any]:
     Args:
         category (str): The folder name (e.g., 'blueprint', 'learning', 'proof')
         node_name (str): The filename without extension (e.g., 'goal_setter')
-        
-    Returns:
-        Dict: The parsed YAML content (system_prompt, user_template, etc.)
     """
     config = get_config()
     
     # Construct path: project_indigo/prompts/{category}/{node_name}.yaml
     prompt_path = config.PROMPTS_DIR / category / f"{node_name}.yaml"
+    
+    if not prompt_path.exists():
+        # Fallback to current directory if PROMPTS_DIR isn't set
+        prompt_path = Path(__file__).parent.parent / "prompts" / category / f"{node_name}.yaml"
     
     if not prompt_path.exists():
         raise FileNotFoundError(f"Prompt file not found at: {prompt_path}")
@@ -30,11 +32,17 @@ def load_node_prompt(category: str, node_name: str) -> Dict[str, Any]:
 
 def format_prompt(template: str, **kwargs) -> str:
     """
-    Helper to inject GraphState variables into the YAML string templates.
-    Handles missing keys gracefully.
+    Helper to inject GraphState variables into YAML string templates.
+    Uses a safe formatter to avoid crashes on code blocks (curly braces).
     """
+    # Regex to find {variable_name} but ignore {{escaped_braces}}
+    # This ensures code blocks in prompts don't break the formatter.
+    def replace_match(match):
+        key = match.group(1)
+        return str(kwargs.get(key, f"<{key}_MISSING>"))
+
     try:
-        return template.format(**kwargs)
-    except KeyError as e:
-        # Fallback if a variable is missing in the state
-        return f"MISSING_DATA: {e}\n\nOriginal Template: {template}"
+        # Replaces {key} with value from kwargs
+        return re.sub(r'(?<!\{)\{([a-zA-Z0-9_]+)\}(?!\})', replace_match, template)
+    except Exception as e:
+        return f"FORMAT_ERROR: {str(e)}\n\nTemplate: {template[:100]}..."

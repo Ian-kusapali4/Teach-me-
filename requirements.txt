@@ -1,13 +1,17 @@
-requests
-beautifulsoup4
-langchain_groq
-python-jobspy
-langchain_core
-langchain_ollama
+# --- Core Framework ---
+langchain-core
+langchain-groq
 langgraph
-pandas
 pydantic
+
+# --- Research & Data ---
+tavily-python
+beautifulsoup4
+requests
+pandas
 pypdf
+
+# --- Local LLM & Utilities ---
+langchain-ollama
 python-dotenv
 pyyaml
-langchain_groq
