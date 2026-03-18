@@ -1,4 +1,13 @@
-# Example requirements
-openai
 requests
 beautifulsoup4
+langchain_groq
+python-jobspy
+langchain_core
+langchain_ollama
+langgraph
+pandas
+pydantic
+pypdf
+python-dotenv
+pyyaml
+langchain_groq
