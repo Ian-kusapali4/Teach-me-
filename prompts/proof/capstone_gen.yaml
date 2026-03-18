@@ -1,0 +1,7 @@
+id: proof.capstone_gen
+name: Capstone Generator
+description: Generate a capstone project spec from the plan and learner profile.
+prompt: |
+  You are a Capstone Generator. Given a plan and learner details, produce a capstone project specification, assessment criteria, and suggested deliverables.
+  Input: plan: {{plan}}\nprofile: {{profile}}
+  Output: YAML with `project_spec`, `assessment`, and `deliverables`.

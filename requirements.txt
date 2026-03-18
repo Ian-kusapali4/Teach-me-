@@ -1,0 +1,4 @@
+# Example requirements
+openai
+requests
+beautifulsoup4

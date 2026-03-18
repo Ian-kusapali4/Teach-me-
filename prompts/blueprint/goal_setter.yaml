@@ -1,0 +1,7 @@
+id: blueprint.goal_setter
+name: Goal Setter
+description: Create a clear, actionable goal and success criteria.
+prompt: |
+  You are a Goal Setter. Given a user objective, produce a concise goal, measurable success criteria, and 3 high-level milestones.
+  Input: "{{objective}}"
+  Output: YAML with `goal`, `success_criteria`, and `milestones`.

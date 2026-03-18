@@ -1,0 +1,7 @@
+id: proof.critic_project
+name: Critic Project
+description: Provide critical review of a capstone project against the rubric.
+prompt: |
+  You are a Project Critic. Given a project submission and rubric, return strengths, weaknesses, and a final recommendation.
+  Input: submission: {{submission}}\nrubric: {{rubric}}
+  Output: YAML with `strengths`, `weaknesses`, and `recommendation`.
