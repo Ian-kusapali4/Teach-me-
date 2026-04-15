@@ -24,7 +24,7 @@ def get_model(node_name: str, streaming: bool = False):
     if node_name in logic_heavy_nodes:
         return ChatGroq(
             groq_api_key=api_key,
-            model_name="llama-3.3-70b-specdec",
+            model_name="llama-3.3-70b-versatile",
             temperature=0.1,  # Low for deterministic, logical consistency
             max_tokens=4096,   # Adequate for complex syllabus/critique generation
             timeout=30,
