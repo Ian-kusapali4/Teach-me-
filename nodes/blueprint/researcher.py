@@ -68,3 +68,7 @@ def researcher_node(state: GraphState) -> Dict[str, Any]:
         "source_material": final_material,
         "history_summary": f"Research complete. Found {len(final_material)} snippets."
     }
+
+# 5. INJECT (State Update)
+# TODO: Implement a Reranker or Domain Filter here.for example Filter by 'langchain.com' or 'github.com' domain priority.
+#final_material = all_snippets[:5]

@@ -1,0 +1,7 @@
+.venv
+.env
+.venv_new
+__pycache__
+*.pyc
+resumes/*
+test/*
