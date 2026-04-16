@@ -72,3 +72,4 @@ def researcher_node(state: GraphState) -> Dict[str, Any]:
 # 5. INJECT (State Update)
 # TODO: Implement a Reranker or Domain Filter here.for example Filter by 'langchain.com' or 'github.com' domain priority.
 #final_material = all_snippets[:5]
+#critic node to evaluate the relevance of the snippets and potentially loop back to researcher for more focused queries if the material does not give a clear path of learing eg a step by step guide.
